@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('user-bookings/{id}','Api\BookController@index'); //dipakai di review your room
 Route::get('booking/{id}','Api\BookController@show'); //ambil data booking tertentu
-Route::post('booking','Api\BookController@show'); //simpan data booking tertentu
-Route::post('booking/{id}','Api\BookController@show'); //update data booking tertentu
+Route::post('booking','Api\BookController@store'); //simpan data booking tertentu
+Route::put('booking/{id}','Api\BookController@update'); //update data booking tertentu
+Route::delete('booking/{id}','Api\BookController@destroy'); //update data booking tertentu
