@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('user-bookings/{id}','Api\BookController@index'); //dipakai di review your room
+Route::get('booking/{id}','Api\BookController@show'); //ambil data booking tertentu
+Route::post('booking','Api\BookController@show'); //simpan data booking tertentu
+Route::post('booking/{id}','Api\BookController@show'); //update data booking tertentu
