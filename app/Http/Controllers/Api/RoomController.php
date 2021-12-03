@@ -50,7 +50,7 @@ class RoomController extends Controller
             'photo'=>'required',
             'facility_type' => 'required',
             'room_status' => 'required',
-            'price'=>'required|double'
+            'price'=>'required'
             
         ]);
 
@@ -67,14 +67,14 @@ class RoomController extends Controller
     public function destroy($id){
         $rooms = room::find($id);
 
-        if(is_null($students)){
+        if(is_null($rooms)){
             return rensponse([
                 'message' => 'Room Not Found',
                 'data' => null
             ], 404);
         }
 
-        if($students->delete()){
+        if($rooms->delete()){
             return response([
                 'message' => 'Delete Room Success',
                 'data' => $rooms
