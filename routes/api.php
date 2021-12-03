@@ -32,7 +32,7 @@ Route::put('review/{id}','Api\ReviewController@update'); //update data booking t
 Route::delete('review/{id}','Api\ReviewController@destroy'); //update data booking tertentu
 
 Route::get('user','Api\UserController@index');
-Route::get('user/{id}','Api\UserController@show');
+Route::get('user/{email}','Api\UserController@show');
 Route::post('user','Api\UserController@store');
 Route::put('user/{id}','Api\UserController@update');
 Route::delete('user/{id}','Api\UserController@destroy');
