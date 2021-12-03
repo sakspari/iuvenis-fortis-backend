@@ -39,6 +39,7 @@ Route::delete('user/{id}','Api\UserController@destroy');
 
 Route::get('room','Api\RoomController@index');
 Route::get('room/{id}','Api\RoomController@show');
+Route::get('room-detail/{id}','Api\RoomController@roomWithDetail');
 Route::post('room','Api\RoomController@store');
 Route::put('room/{id}','Api\RoomController@update');
 Route::delete('room/{id}','Api\RoomController@destroy');

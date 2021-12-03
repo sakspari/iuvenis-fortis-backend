@@ -14,7 +14,7 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
+            $table->id()->nullable(false);
             $table->foreignId('room_id')
                 ->constrained('rooms')
                 ->onDelete('cascade')

@@ -14,7 +14,7 @@ class CreateRoomDetailsTable extends Migration
     public function up()
     {
         Schema::create('room_details', function (Blueprint $table) {
-            $table->id();
+            $table->id()->nullable(false);
             $table->foreignId('room_id')
                 ->constrained('rooms')
                 ->onDelete('cascade')
