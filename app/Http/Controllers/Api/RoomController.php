@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Room;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class RoomController extends Controller
 {
@@ -11,7 +14,7 @@ class RoomController extends Controller
     public function index(){
         $rooms = room::all();
 
-        if(count($users)> 0){
+        if(count($rooms)> 0){
             return response([
                 'message' => 'Retrieve All Success',
                 'data' => $users
@@ -29,13 +32,13 @@ class RoomController extends Controller
 
         if(!is_null($rooms)){
             return response([
-                'message' => 'Retrieve User Success',
+                'message' => 'Retrieve Room Success',
                 'data' => $rooms
             ], 200);
         }
 
         return response([
-            'message' => 'User Not Found',
+            'message' => 'Room Not Found',
             'data' => null
         ], 404);
     }
@@ -43,10 +46,12 @@ class RoomController extends Controller
     public function store(Request $request){
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            'name' => 'required|max:60|alpha',
-            'email' => 'required|unique:users',
-            'password'=>'required',
-            'photo'=>'required'
+            'room_type' => 'required|max:60',
+            'photo'=>'required',
+            'facility_type' => 'required',
+            'room_status' => 'required',
+            'price'=>'required|double'
+            
         ]);
 
         if($validate->fails())
@@ -54,68 +59,72 @@ class RoomController extends Controller
 
             $rooms = room::create($storeData);
         return response([
-            'message' => 'Add Student Success',
-            'data' => $students
+            'message' => 'Add Room Success',
+            'data' => $rooms
         ], 200);
     }
 
     public function destroy($id){
-        $students = Student::find($id);
+        $rooms = room::find($id);
 
         if(is_null($students)){
             return rensponse([
-                'message' => 'student Not Found',
+                'message' => 'Room Not Found',
                 'data' => null
             ], 404);
         }
 
         if($students->delete()){
             return response([
-                'message' => 'Delete Student Success',
-                'data' => $students
+                'message' => 'Delete Room Success',
+                'data' => $rooms
             ], 200);
         }
 
         return response([
-            'message' => 'Delete Student Failed',
+            'message' => 'Delete Room Failed',
             'data' => null
         ], 400);
     }
     public function update(Request $request, $id){
-        $students = Student::find($id);
+        $rooms = Student::find($id);
 
-        if(is_null($students)){
+        if(is_null($rooms)){
             return response([
-                'message' => 'Student Not Found',
-                'data' => $students
+                'message' => 'Room Not Found',
+                'data' => $rooms
             ], 404);
         }
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            'nama' => 'required|max:60',Rule::unique('student')->ignore($students),
-            'npm' => 'required|numeric',
-            'tanggal_lahir' => 'required|date_format:Y-m-d',
-            'no_telp' => 'required|numeric|regex:/^08\d{11,13}$/'
+            'room_type' => 'required|max:60',
+            'photo' => 'required',
+            'facility_type' => 'required',
+            'room_status' => 'required',
+            'price'=>'required|double'
+            
         ]);
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
             
-            $students->nama= $updateData['nama'];
-            $students->npm = $updateData['npm'];
-            $students->tanggal_lahir = $updateData['tanggal_lahir'];
-            $students->no_telp = $updateData['no_telp'];
+            $rooms->room_type= $updateData['room_type'];
+            $rooms->photo = $updateData['photo'];
+            $rooms->facility_type = $updateData['facility_type'];
+            $rooms->room_status = $updateData['room_status'];
+            $rooms->price = $updateData['price'];
 
-        if($students->save()) {
+        if($rooms->save()) {
             return response([
-                'message' => 'Update student Success',
-                'data' => $students
+                'message' => 'Update rooms Success',
+                'data' => $rooms
             ], 200);
         }
         
         return response([
-            'message' => 'Update student Failed',
+            'message' => 'Update rooms Failed',
             'data' => null
         ], 400);
+}
 }

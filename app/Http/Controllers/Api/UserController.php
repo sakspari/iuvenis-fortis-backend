@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -52,27 +55,27 @@ class UserController extends Controller
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
 
-            $students = Student::create($storeData);
+            $users = User::create($storeData);
         return response([
-            'message' => 'Add Student Success',
-            'data' => $students
+            'message' => 'Add User Success',
+            'data' => $users
         ], 200);
     }
 
     public function destroy($id){
-        $students = Student::find($id);
+        $users = User::find($id);
 
-        if(is_null($students)){
+        if(is_null($users)){
             return rensponse([
-                'message' => 'student Not Found',
+                'message' => 'User Not Found',
                 'data' => null
             ], 404);
         }
 
-        if($students->delete()){
+        if($users->delete()){
             return response([
-                'message' => 'Delete Student Success',
-                'data' => $students
+                'message' => 'Delete User Success',
+                'data' => $users
             ], 200);
         }
 
@@ -82,40 +85,41 @@ class UserController extends Controller
         ], 400);
     }
     public function update(Request $request, $id){
-        $students = Student::find($id);
+        $users = User::find($id);
 
-        if(is_null($students)){
+        if(is_null($users)){
             return response([
-                'message' => 'Student Not Found',
-                'data' => $students
+                'message' => 'User Not Found',
+                'data' => $users
             ], 404);
         }
 
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
-            'nama' => 'required|max:60',Rule::unique('student')->ignore($students),
-            'npm' => 'required|numeric',
-            'tanggal_lahir' => 'required|date_format:Y-m-d',
-            'no_telp' => 'required|numeric|regex:/^08\d{11,13}$/'
+            'name' => 'required|max:60',
+            'email' => 'required',Rule::unique('user')->ignore($users),
+            'password' => 'required',
+            'photo' => 'required'
         ]);
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
             
-            $students->nama= $updateData['nama'];
-            $students->npm = $updateData['npm'];
-            $students->tanggal_lahir = $updateData['tanggal_lahir'];
-            $students->no_telp = $updateData['no_telp'];
+            $users->name= $updateData['name'];
+            $users->email = $updateData['email'];
+            $users->password = $updateData['password'];
+            $users->photo = $updateData['photo'];
 
-        if($students->save()) {
+        if($users->save()) {
             return response([
-                'message' => 'Update student Success',
-                'data' => $students
+                'message' => 'Update User Success',
+                'data' => $users
             ], 200);
         }
         
         return response([
-            'message' => 'Update student Failed',
+            'message' => 'Update User Failed',
             'data' => null
         ], 400);
+}
 }
