@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Validator;
 use Illuminate\Validation\Rule;
 
@@ -27,8 +28,11 @@ class UserController extends Controller
         ], 400);
     }
 
-    public function show($id){
-        $users = user::find($id);
+    public function show($email){
+//        $users = user::find($email);
+        $users = DB::table('users')
+        ->where('email',$email)
+        ->get();
 
         if(!is_null($users)){
             return response([
@@ -104,7 +108,7 @@ class UserController extends Controller
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
-            
+
             $users->name= $updateData['name'];
             $users->email = $updateData['email'];
             $users->password = $updateData['password'];
@@ -116,7 +120,7 @@ class UserController extends Controller
                 'data' => $users
             ], 200);
         }
-        
+
         return response([
             'message' => 'Update User Failed',
             'data' => null
