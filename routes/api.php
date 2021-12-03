@@ -30,3 +30,15 @@ Route::get('review/{id}','Api\ReviewController@show'); //ambil data review terte
 Route::post('review','Api\ReviewController@store'); //simpan data review tertentu
 Route::put('review/{id}','Api\ReviewController@update'); //update data booking tertentu
 Route::delete('review/{id}','Api\ReviewController@destroy'); //update data booking tertentu
+
+Route::get('user','Api\UserController@index');
+Route::get('user/{id}','Api\UserController@show');
+Route::post('user','Api\UserController@store');
+Route::put('user/{id}','Api\UserController@update');
+Route::delete('user/{id}','Api\UserController@destroy');
+
+Route::get('room','Api\RoomController@index');
+Route::get('room/{id}','Api\RoomController@show');
+Route::post('room','Api\RoomController@store');
+Route::put('room/{id}','Api\RoomController@update');
+Route::delete('room/{id}','Api\RoomController@destroy');
