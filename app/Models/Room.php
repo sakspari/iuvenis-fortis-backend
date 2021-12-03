@@ -10,7 +10,11 @@ class Room extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'post_content', 'user_id'
+        'room_type',
+        'photo',
+        'facility_type',
+        'room_status',
+        'price',
     ];
 
     public function getCreatedAtAttribute()

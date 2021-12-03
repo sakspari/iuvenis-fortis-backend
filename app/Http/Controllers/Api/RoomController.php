@@ -17,7 +17,7 @@ class RoomController extends Controller
         if(count($rooms)> 0){
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => $users
+                'data' => $rooms
             ], 200);
         }
 
@@ -46,12 +46,12 @@ class RoomController extends Controller
     public function store(Request $request){
         $storeData = $request->all();
         $validate = Validator::make($storeData, [
-            'room_type' => 'required|max:60',
+            'room_type' => 'required',
             'photo'=>'required',
             'facility_type' => 'required',
             'room_status' => 'required',
             'price'=>'required'
-            
+
         ]);
 
         if($validate->fails())
@@ -103,12 +103,12 @@ class RoomController extends Controller
             'facility_type' => 'required',
             'room_status' => 'required',
             'price'=>'required|double'
-            
+
         ]);
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
-            
+
             $rooms->room_type= $updateData['room_type'];
             $rooms->photo = $updateData['photo'];
             $rooms->facility_type = $updateData['facility_type'];
@@ -121,7 +121,7 @@ class RoomController extends Controller
                 'data' => $rooms
             ], 200);
         }
-        
+
         return response([
             'message' => 'Update rooms Failed',
             'data' => null
