@@ -53,12 +53,14 @@ class UserController extends Controller
             'name' => 'required|max:60|alpha',
             'email' => 'required|unique:users',
             'password'=>'required',
-            'photo'=>'required'
+            'photo',
+            'status'=>'required',
         ]);
 
         if($validate->fails())
             return response(['message' => $validate->errors()], 400);
 
+            $storeData['password'] = bcrypt($request->password); //enkripsi password
             $users = User::create($storeData);
         return response([
             'message' => 'Add User Success',
@@ -103,7 +105,8 @@ class UserController extends Controller
             'name' => 'required|max:60',
             'email' => 'required',Rule::unique('user')->ignore($users),
             'password' => 'required',
-            'photo' => 'required'
+            'photo',
+            'status' => 'required',
         ]);
 
         if($validate->fails())
@@ -111,8 +114,9 @@ class UserController extends Controller
 
             $users->name= $updateData['name'];
             $users->email = $updateData['email'];
-            $users->password = $updateData['password'];
+            $users->password = bcrypt($updateData['password']); //enkripsi password
             $users->photo = $updateData['photo'];
+            $users->status = $updateData['status'];
 
         if($users->save()) {
             return response([
