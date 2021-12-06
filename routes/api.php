@@ -22,7 +22,7 @@ Route::get('user-bookings/{id}','Api\BookController@index'); //parameter id user
 Route::get('booking/{id}','Api\BookController@show'); //ambil data booking tertentu
 Route::post('booking','Api\BookController@store'); //simpan data booking tertentu
 Route::put('booking/{id}','Api\BookController@update'); //update data booking tertentu
-Route::delete('booking/{id}','Api\BookController@destroy'); //update data booking tertentu
+Route::delete('booking/{id}','Api\BookController@destroy'); //hapus data booking tertentu
 
 Route::get('user-room-reviews/{room_id}/{user_id}','Api\ReviewController@userRoomReview'); //ambill data review dari room tertentu yang dibuat oleh user tertentu
 Route::get('room-reviews/{id}','Api\ReviewController@reviewWithUser'); //ambill data review dari room tertentu dari semua user
@@ -43,3 +43,6 @@ Route::get('room-detail/{id}','Api\RoomController@roomWithDetail');
 Route::post('room','Api\RoomController@store');
 Route::put('room/{id}','Api\RoomController@update');
 Route::delete('room/{id}','Api\RoomController@destroy');
+
+Route::get('room/detail/{id}','Api\RoomDetailController@show');
+
