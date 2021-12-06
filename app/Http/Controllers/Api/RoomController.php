@@ -19,7 +19,7 @@ class RoomController extends Controller
         if (count($rooms) > 0) {
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => [$rooms]
+                'data' => $rooms
             ], 200);
         }
 

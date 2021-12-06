@@ -19,7 +19,7 @@ class UserController extends Controller
         if (count($users) > 0) {
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => [$users]
+                'data' => $users
             ], 200);
         }
 

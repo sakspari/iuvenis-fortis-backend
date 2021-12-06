@@ -22,7 +22,7 @@ class BookController extends Controller
         if(count($userBookings)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => [$userBookings]
+                'data' => $userBookings
             ], 200);
         }
         return response([
