@@ -36,7 +36,7 @@ class RoomController extends Controller
         if (!is_null($rooms)) {
             return response([
                 'message' => 'Retrieve Room Success',
-                'data' => [$rooms]
+                'data' => $rooms
             ], 200);
         }
 
