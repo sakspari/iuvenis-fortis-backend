@@ -24,7 +24,7 @@ class RoomDetailController extends Controller
         $rooms = room::create($storeData);
         return response([
             'message' => 'Add Room Detail Success',
-            'data' => $rooms
+            'data' => [$rooms]
         ], 200);
     }
 
@@ -39,7 +39,7 @@ class RoomDetailController extends Controller
         if (!is_null($rooms)) {
             return response([
                 'message' => 'Retrieve Room Detail Success',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 200);
         }
 
@@ -56,7 +56,7 @@ class RoomDetailController extends Controller
         if (is_null($roomDetail)) {
             return response([
                 'message' => 'Room Detail Not Found',
-                'data' => $roomDetail
+                'data' => [$roomDetail]
             ], 404);
         }
 
@@ -75,7 +75,7 @@ class RoomDetailController extends Controller
         if ($roomDetail->save()) {
             return response([
                 'message' => 'Update room detail  Success',
-                'data' => $roomDetail
+                'data' => [$roomDetail]
             ], 200);
         }
 

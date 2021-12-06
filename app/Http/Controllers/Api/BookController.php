@@ -22,7 +22,7 @@ class BookController extends Controller
         if(count($userBookings)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $userBookings
+                'data' => [$userBookings]
             ], 200);
         }
         return response([
@@ -38,7 +38,7 @@ class BookController extends Controller
         if (!is_null($booking)) {
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $booking
+                'data' => [$booking]
             ], 200);
         }
 
@@ -67,7 +67,7 @@ class BookController extends Controller
         $booking = BookDetail::create($storeData);
         return response([
             'message' => 'Add Booking Success',
-            'data' => $booking
+            'data' => [$booking]
         ], 200); //return data boking dalam bentuk JSON
     }
 
@@ -86,7 +86,7 @@ class BookController extends Controller
         if($booking->delete()){
             return response([
                 'message'=>'Delete Booking Success',
-                'data'=>$booking
+                'data'=>[$booking]
             ],200);
         }
 
@@ -126,7 +126,7 @@ class BookController extends Controller
         if($booking->save()){
             return response([
                 'message'=> 'Update Booking Success',
-                'data'=>$booking
+                'data'=>[$booking]
             ],200);
         }
         return response([

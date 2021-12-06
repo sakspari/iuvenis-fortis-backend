@@ -19,7 +19,7 @@ class UserController extends Controller
         if (count($users) > 0) {
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => $users
+                'data' => [$users]
             ], 200);
         }
 
@@ -39,7 +39,7 @@ class UserController extends Controller
         if (!is_null($users)) {
             return response([
                 'message' => 'Retrieve User Success',
-                'data' => $users
+                'data' => [$users]
             ], 200);
         }
 
@@ -71,7 +71,7 @@ class UserController extends Controller
         $users = User::create($storeData);
         return response([
             'message' => 'Add User Success',
-            'data' => $users
+            'data' => [$users]
         ], 200);
     }
 
@@ -89,7 +89,7 @@ class UserController extends Controller
         if ($users->delete()) {
             return response([
                 'message' => 'Delete User Success',
-                'data' => $users
+                'data' => [$users]
             ], 200);
         }
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         if (is_null($users)) {
             return response([
                 'message' => 'User Not Found',
-                'data' => $users
+                'data' => [$users]
             ], 404);
         }
 
@@ -136,7 +136,7 @@ class UserController extends Controller
         if ($users->save()) {
             return response([
                 'message' => 'Update User Success',
-                'data' => $users
+                'data' => [$users]
             ], 200);
         }
 

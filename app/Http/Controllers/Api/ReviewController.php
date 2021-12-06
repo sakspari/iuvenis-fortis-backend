@@ -10,7 +10,7 @@ use Validator;
 
 class ReviewController extends Controller
 {
-    public function userRoomReview($room_id,$user_id) //parameterb id kamar
+    public function userRoomReview($room_id,$user_id) //parameter id kamar
     {
         //ambil data review dari kamar tertentu
         $roomReviews = DB::table('reviews')
@@ -23,7 +23,7 @@ class ReviewController extends Controller
         if(count($roomReviews)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $roomReviews
+                'data' => [$roomReviews]
             ], 200);
         }
         return response([
@@ -44,7 +44,7 @@ class ReviewController extends Controller
         if(count($roomReviews)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $roomReviews
+                'data' => [$roomReviews]
             ], 200);
         }
         return response([
@@ -81,7 +81,7 @@ class ReviewController extends Controller
         if (!is_null($review)) {
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $review
+                'data' => [$review]
             ], 200);
         }
 
@@ -109,7 +109,7 @@ class ReviewController extends Controller
         $review = Review::create($storeData);
         return response([
             'message' => 'Add Review Success',
-            'data' => $review
+            'data' => [$review]
         ], 200); //return data review dalam bentuk JSON
     }
 
@@ -128,7 +128,7 @@ class ReviewController extends Controller
         if($review->delete()){
             return response([
                 'message'=>'Delete Review Success',
-                'data'=>$review
+                'data'=>[$review]
             ],200);
         }
 
@@ -166,7 +166,7 @@ class ReviewController extends Controller
         if($review->save()){
             return response([
                 'message'=> 'Update Review Success',
-                'data'=>$review
+                'data'=>[$review]
             ],200);
         }
         return response([

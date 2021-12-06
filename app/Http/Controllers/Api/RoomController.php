@@ -19,7 +19,7 @@ class RoomController extends Controller
         if (count($rooms) > 0) {
             return response([
                 'message' => 'Retrieve All Success',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 200);
         }
 
@@ -36,7 +36,7 @@ class RoomController extends Controller
         if (!is_null($rooms)) {
             return response([
                 'message' => 'Retrieve Room Success',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 200);
         }
 
@@ -55,7 +55,7 @@ class RoomController extends Controller
         if (!is_null($rooms)) {
             return response([
                 'message' => 'Retrieve Room Success',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 200);
         }
 
@@ -83,7 +83,7 @@ class RoomController extends Controller
         $rooms = room::create($storeData);
         return response([
             'message' => 'Add Room Success',
-            'data' => $rooms
+            'data' => [$rooms]
         ], 200);
     }
 
@@ -101,7 +101,7 @@ class RoomController extends Controller
         if ($rooms->delete()) {
             return response([
                 'message' => 'Delete Room Success',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 200);
         }
 
@@ -118,7 +118,7 @@ class RoomController extends Controller
         if (is_null($rooms)) {
             return response([
                 'message' => 'Room Not Found',
-                'data' => $rooms
+                'data' => [$rooms]
             ], 404);
         }
 
