@@ -39,7 +39,7 @@ class UserController extends Controller
         if (!is_null($users)) {
             return response([
                 'message' => 'Retrieve User Success',
-                'data' => [$users]
+                'data' => $users
             ], 200);
         }
 
