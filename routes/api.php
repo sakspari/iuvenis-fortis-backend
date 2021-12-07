@@ -45,4 +45,4 @@ Route::put('room/{id}','Api\RoomController@update');
 Route::delete('room/{id}','Api\RoomController@destroy');
 
 Route::get('room/detail/{id}','Api\RoomDetailController@show');
-
+Route::post('room/detail','Api\RoomDetailController@store');
