@@ -122,6 +122,9 @@ class UserController extends Controller
         if ($validate->fails())
             return response(['message' => $validate->errors()], 400);
 
+        if(password_verify($updateData['password'],$users['password']))
+            return response(['message' => 'password Incorrect'], 400);
+
         $users->name = $updateData['name'];
         $users->email = $updateData['email'];
         $users->password = bcrypt($updateData['password']); //enkripsi password
