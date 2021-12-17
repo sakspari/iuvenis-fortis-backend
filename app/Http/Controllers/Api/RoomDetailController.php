@@ -21,7 +21,7 @@ class RoomDetailController extends Controller
         if ($validate->fails())
             return response(['message' => $validate->errors()], 400);
 
-        $rooms = room::create($storeData);
+        $rooms = roomdetail::create($storeData);
         return response([
             'message' => 'Add Room Detail Success',
             'data' => [$rooms]
