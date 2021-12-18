@@ -113,6 +113,7 @@ class UserController extends Controller
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
             'name' => 'required|max:60',
+            'password'=>'required',
             'photo',
         ]);
 
