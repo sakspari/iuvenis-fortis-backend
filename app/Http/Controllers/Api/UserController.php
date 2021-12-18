@@ -113,10 +113,7 @@ class UserController extends Controller
         $updateData = $request->all();
         $validate = Validator::make($updateData, [
             'name' => 'required|max:60',
-            'email' => 'required', Rule::unique('user')->ignore($users),
-            'password' => 'required',
             'photo',
-            'status' => 'required',
         ]);
 
         if ($validate->fails())
@@ -126,14 +123,12 @@ class UserController extends Controller
             return response(['message' => 'password Incorrect'], 400);
 
         $users->name = $updateData['name'];
-        $users->email = $updateData['email'];
-        $users->password = bcrypt($updateData['password']); //enkripsi password
         $users->photo = $updateData['photo'];
-        if ($updateData['status'] == 1) {
-            $users->status = "true";
-        } else {
-            $users->status = "false";
-        }
+//        if ($updateData['status'] == 1) {
+//            $users->status = "true";
+//        } else {
+//            $users->status = "false";
+//        }
 //             = $updateData['status'];
 
         if ($users->save()) {
