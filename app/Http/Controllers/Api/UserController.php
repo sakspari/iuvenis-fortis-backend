@@ -120,7 +120,7 @@ class UserController extends Controller
         if ($validate->fails())
             return response(['message' => $validate->errors()], 400);
 
-        if(password_verify($updateData['password'],$users['password']))
+        if(!password_verify($updateData['password'],$users['password']))
             return response(['message' => 'password Incorrect'], 400);
 
         $users->name = $updateData['name'];
