@@ -18,8 +18,7 @@ class ReviewController extends Controller
             ->get();
 
         $roomReviews = $roomReviewsAll
-        ->where('user_id','=',$user_id)
-            ->get();
+        ->where('user_id','=',$user_id);
 
 //        $roomReviews = DB::table('reviews')
 //            ->where('room_id','=',$room_id)
