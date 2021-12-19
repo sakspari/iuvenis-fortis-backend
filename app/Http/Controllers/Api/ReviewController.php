@@ -35,9 +35,13 @@ class ReviewController extends Controller
     public function reviewWithUser($id) //parameterb id kamar
     {
         //ambil data review dari kamar tertentu
+//        $roomReviews = DB::table('reviews')
+//            ->where('room_id','=',$id)
+//            ->leftJoin('users','reviews.user_id','=','users.id')
+//            ->get();
+
         $roomReviews = DB::table('reviews')
             ->where('room_id','=',$id)
-            ->leftJoin('users','reviews.user_id','=','users.id')
             ->get();
 
 
