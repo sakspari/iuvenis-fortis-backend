@@ -17,7 +17,7 @@ class ReviewController extends Controller
             ->where('room_id','=',$room_id)
             ->get();
 
-        $roomReviews = $roomReviewsAll
+        [$roomReviews] = $roomReviewsAll
         ->where('user_id','=',$user_id);
 
         if(count($roomReviews)>0){
