@@ -20,13 +20,6 @@ class ReviewController extends Controller
         $roomReviews = $roomReviewsAll
         ->where('user_id','=',$user_id);
 
-//        $roomReviews = DB::table('reviews')
-//            ->where('room_id','=',$room_id)
-//            ->join('users','reviews.user_id','=','users.id')
-//            ->where('users.id',$user_id)
-//            ->get();
-
-
         if(count($roomReviews)>0){
             return response([
                 'message' => 'Retrive All Success',
@@ -51,7 +44,7 @@ class ReviewController extends Controller
         if(count($roomReviews)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => [$roomReviews]
+                'data' => $roomReviews
             ], 200);
         }
         return response([
