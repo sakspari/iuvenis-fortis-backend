@@ -23,7 +23,7 @@ class ReviewController extends Controller
         if(count($roomReviews)>0){
             return response([
                 'message' => 'Retrive All Success',
-                'data' => $roomReviews
+                'data' => [$roomReviews]
             ], 200);
         }
         return response([
