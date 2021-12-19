@@ -125,12 +125,7 @@ class UserController extends Controller
 
         $users->name = $updateData['name'];
         $users->photo = $updateData['photo'];
-//        if ($updateData['status'] == 1) {
-//            $users->status = "true";
-//        } else {
-//            $users->status = "false";
-//        }
-//             = $updateData['status'];
+
 
         if ($users->save()) {
             return response([
