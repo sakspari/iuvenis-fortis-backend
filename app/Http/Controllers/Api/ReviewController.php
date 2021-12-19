@@ -15,7 +15,7 @@ class ReviewController extends Controller
         //ambil data review dari kamar tertentu
         $roomReviews = DB::table('reviews')
             ->where('room_id','=',$room_id)
-            ->where('user_id','=',$user_id);
+            ->where('user_id','=',$user_id)
             ->get();
 
 //        [$roomReviews] = $roomReviewsAll
